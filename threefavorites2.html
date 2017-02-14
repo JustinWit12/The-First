@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Three Favorite Shows</title>
+	<title>My Three Favorites</title>
 	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
 
 	<style>
 		body{
-			background-color: rgb(73,148,221);
 			font-family: 'Slabo 27px', serif;
-			font-size: 150%;
+			background-color: rgb(73,148,221);
+			}
+
+			/*Structure Layout*/
+
+		#pagewrap{
+			padding: 5px;
+			width: 960px;
+			margin: 20px auto;
 			}
 
 		header{
 			height: 100px;
-			padding: 0px 5px;
+			padding: 0px 15px;
 			}
 
 		#content{
-			width:30%;
+			width: 290px;
 			float: left;
-			padding:10px;
+			padding: 5px 15px;
 			}
 
 		#middle{
-			width:30%;
+			width: 294px;
 			float: left;
-			padding:10px;
+			padding: 5px 15px;
+			margin:0px 5px 5px 5px;
 			}
 
 		#sidebar{
-			width:30%;
+			width: 270px;
 			float: left;
-			padding:10px;
+			padding: 5px 15px;
 			}
+
+		#footer{
+			clear: both;
+			padding: 0px 15px;
+		}
+		
 	</style>
+	
 </head>
 
+
 <body>
+
+	<div id ="pagewrap">
+		<header>
 	<h1>My Three Favorite Shows</h1>
+		</header>
 
 		<section id ="content">
 			<h2>M*A*S*H</h2>
@@ -66,6 +86,8 @@
 
 				</p>
 		</aside>
+
+	</div>
 
 </body>
 </html>
