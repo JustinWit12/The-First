@@ -21,12 +21,14 @@
 		header{
 			height: 100px;
 			padding: 0px 15px;
+			margin-bottom: 10px;
 			}
 
 		#content{
 			width: 290px;
 			float: left;
 			padding: 5px 15px;
+			margin-top: 20px;
 			}
 
 		#middle{
@@ -34,19 +36,93 @@
 			float: left;
 			padding: 5px 15px;
 			margin:0px 5px 5px 5px;
+			margin-top: 20px;
 			}
 
 		#sidebar{
 			width: 270px;
 			float: left;
 			padding: 5px 15px;
+			margin-top: 20px;
 			}
 
 		#footer{
 			clear: both;
 			padding: 0px 15px;
+			float: left;
+			}
+
+/**************************
+*************************
+MEDIA QUERIES
+*************************
+***************************/
+
+		/*For 980px or less*/
+		@media screen and (max-width: 980px){
+			#pagewrap{
+				width: 94%;
+			}
+
+			#content{
+				width: 41%;
+				padding: 1% 4%;
+			}
+
+			#middle{
+				width:41%;
+				padding: 1% 4%;
+				margin: 0px 0px 5px 5px;
+				float: right;
+			}
+
+			header, footer{
+				padding: 1% 4%;
+			}
 		}
-		
+
+		/*For 700px or less*/
+		@media screen and (max-width: 700px){
+			#content{
+				width: auto;
+				float: none;
+			}
+
+			#middle{
+				width: auto;
+				float: none;
+				margin-left: 0px;
+
+			}
+
+			#sidebar{
+				width: auto;
+				float: none;
+			}
+
+		}
+
+		/*For 480px or less*/
+		@media screen and (max-width: 480px){
+			header{
+				height: auto;
+			}
+
+			h1{
+				font size: 2em;
+			}
+
+		}
+
+
+		header, #content, #middle, #sidebar{
+			margin-bottom: 5px;
+			}
+
+		#pagewrap, header, #content, #middle, #sidebar{
+			border: solid 1px #ccc;
+
+			}		
 	</style>
 	
 </head>
@@ -58,13 +134,14 @@
 		<header>
 	<h1>My Three Favorite Shows</h1>
 		</header>
+		
 
 		<section id ="content">
 			<h2>M*A*S*H</h2>
 
 				<p>
 				<img src="img/mash.jpg" width="90%"><br>
-				M*A*S*H is a show about a hospital unit in the Korean war. I like it because it is funny. Each charecter is different and watching them learn to get along is cool.
+				M*A*S*H is a show about a hospital unit in the Korean war. I like it because it is funny. Each character is different and watching them learn to get along is cool.
 
 				</p>
 		</section>
@@ -88,6 +165,5 @@
 		</aside>
 
 	</div>
-
-</body>
+</body>	
 </html>
