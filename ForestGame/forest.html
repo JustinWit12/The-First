@@ -14,7 +14,7 @@
 	<img id = "comp"src="images/map.png" width = "300px">
 	<p id= "output"> </p>
 	<input id = "input" type ="text" placeholder ="Enter Your Action...">
-	<button> Enter</button><br><br>
+	<button id ="key"> Enter</button>
 	
 
 
@@ -28,9 +28,10 @@
 		map[5] = "An Ancient Gate";
 		map[6] = "The Edge of a River";
 		map[7] = "A Lonely Wooden Bench";
-		map[8] = "An Isolated Cottage. Faint music comes from inside.";
+		map[8] = "An Isolated Cottage.";
 
 		var actionsIknow = ["north", "east", "south", "west"];
+		var itemsLocation = [1, 6, 8];
 
 		var img = [];
 		img[0] = "images/keep.png"
@@ -43,13 +44,30 @@
 		img[7] = "images/bench.png"
 		img[8] = "images/cottage.png"
 
+		var blockedPathMessages = [];
+		blockedPathMessages[0] = "It's way too dangerous to go that way!";
+		blockedPathMessages[1] = "A strange force pulls you back!";
+		blockedPathMessages[2] = "There are thorns in the way!";
+		blockedPathMessages[3] = "You can't step over a dragon!";
+		blockedPathMessages[4] = " ";
+		blockedPathMessages[5] = "The gate is locked";
+		blockedPathMessages[6] = "The water is too cold to cross";
+		blockedPathMessages[7] = "The trees are too thick to pass";
+		blockedPathMessages[8] = "That way is too scary";
+		
+		var items = ["flute", "stone", "sword"];
 
+		var backpack = [];
 
-
+		var itemsIknow = ["flute", "stone", "sword"];
+		var item = "";
 		var mapLocation = 4;
 		var playerInput = "";
 		var gameMessage = "";
 		var action = "";
+
+
+
 
 		var output= document.querySelector("#output");
 			output.innerHTML = map[mapLocation];
@@ -58,6 +76,16 @@
 			button.style.cursor = "pointer";
 		button.addEventListener("click", clickHandler, false);
 		var image = document.querySelector("img");
+
+
+		document.getElementById("input")
+    		.addEventListener("keyup", function(event) {
+   				event.preventDefault();
+   				if (event.keyCode == 13) {
+        			document.getElementById("key").click();
+   				}
+			});
+
 
 
 
@@ -85,36 +113,52 @@
 
 		switch(action){
 			case "north":
-			mapLocation -=3;
-			if (mapLocation < 0){
-				mapLocation +=3;
-				console.log("You're too far")
-			}
+				if (mapLocation >=3){
+					mapLocation -=3;
+				}
+				else{
+					gameMessage = blockedPathMessages[mapLocation];
+				}
 			break;
 
 			case "east":
-			mapLocation +=1;
-			if (mapLocation > 8){
-				mapLocation -=1;
-				console.log("You're too far")
-			}
-			break;
+				if(mapLocation % 3 !=2){
+					mapLocation +=1;
+				}
+				else{
+					gameMessage = blockedPathMessages[mapLocation]
+				}
+				break;
 
 			case "south":
-			mapLocation +=3;
-			if (mapLocation > 8){
-				mapLocation -=3;
-				console.log("You're too far")
-			}
+				if (mapLocation < 6){
+				mapLocation +=3;
+				}
+				else{
+					gameMessage = blockedPathMessages[mapLocation];
+				}
 			break;
 
 			case "west":
-			mapLocation -=1;
-			if (mapLocation < 0){
-				mapLocation +=1;
-				console.log("You're too far")
-			}
+				if(mapLocation % 3 !=0){
+					mapLocation -=1;
+				}
+				else{
+					gameMessage = blockedPathMessages[mapLocation]
+				}
 			break;
+
+			case "take":
+				takeItem()
+				break;
+
+			case "drop":
+				dropItem()
+				break;
+
+			case "use":
+				useItem()
+				break;
 
 			default:
 			gameMessage = "I do not know that!"
@@ -125,8 +169,54 @@
 	function render(){
 		output.innerHTML = map[mapLocation];
 		image.src = img[mapLocation]
+		for(var i = 0; i<items.length; i++){
+			if(mapLocation === itemsLocation[i]){
+				output.innerHTML += "<br> You see a <strong>" + items[i] + "</strong> here."
+			}
+		}
 
 		output.innerHTML += "<br> <em>" + gameMessage +"</em>"
+		input.value = "";
+
+		if(backpack.length !== 0){
+			output.innerHTML += "<br>You are carrying: " + backpack.join(", ");
+		}
+	}
+
+	function takeItem(){
+		var itemIndexNumber = items.indexOf(item);
+		if(itemIndexNumber !== -1 && itemsLocation[itemIndexNumber]){
+			gameMessage = "You take the: " + item + ".";
+			backpack.push(item);
+			items.splice(itemIndexNumber, 1);
+			itemsLocation.splice(itemIndexNumber, 1);
+		}
+
+		else{
+			gameMessage = "You can't do that!";
+		}
+	}
+
+	function dropItem(){
+		if(backpack.length !== 0){
+			var backpackIndexNumber = backpack.indexOf(item);
+			if(backpackIndexNumber !== -1){
+				gameMessage = "You dropped the " + item + ".";
+				items.push(backpack[backpackIndexNumber]);
+				itemsLocation.push(mapLocation);
+				backpack.splice(backpackIndexNumber);
+			}
+			else{
+				gameMessage = "You can't do that!";
+			}
+		}
+		else{
+			gameMessage = "You're not carrying anything!";
+		}
+	}
+
+	function useItem(){
+
 	}
 
 
