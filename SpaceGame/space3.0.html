@@ -58,8 +58,6 @@
 	<p id= "output"> </p>
 	<input id = "input" type ="text" placeholder ="Which Way Captain?">
 	<button id ="key"> Enter</button>
-	
-
 
 	<script>
 		var map = [];
@@ -99,6 +97,7 @@
 		
 		var items = ["Key", "Torpedo", "Supply Crate"];
 		var itemsLocation = [0, 7, 3]
+
 		var keyLocation = [];
 		keyLocation = 0;
 
@@ -133,33 +132,14 @@
 
 
 		document.getElementById("input")
-    		.addEventListener("keyup", function(event){
+    		.addEventListener("keyup", function(event) {
    				event.preventDefault();
    				if (event.keyCode == 13) {
         			document.getElementById("key").click();
    				}
 			});
 
-		document.addEventListener("keyup", keyUpHandler, false);
 
-		function keyUpHandler(e){
-			if(e.keyCode == 40){
-				event.preventDefault();
-				playerInput = "south";
-				action = "south";
-				document.getElementById("key").click();
-				console.log("input: " + playerInput);
-			}
-			if(e.keyCode == 39){
-				rightPressed = false;
-			}
-			if(e.keyCode == 38){
-				console.log("up")
-			}
-			if(e.keyCode == 37){
-				leftPressed = false;
-			}
-		}
 
 
 		/*Function*/
@@ -343,26 +323,25 @@
 
 
 	function useItem(){
-		if(mapLocation === 5 && item[1] === "Torpedo"){
-			img[5] = "images/boom.jpg";
-			backpack.splice(item);
-			item.splice("Torpedo");
-			gameMessage = "You've destroyed the ship!";
-		}
-		else if(mapLocation != 5 && item[1] === "Torpedo"){
-			gameMessage = "You can't use that here";
-		}
+		console.log(item);
+		switch(item){
+			case "Key":
+				if(mapLocation === 5){
+					img[5] = "images/boom.jpg";
+					backpack.splice(item);
+					item.splice("Key");
+					gameMessage = "You've destroyed the ship!";
+				}
 
-		else if(mapLocation === 8 && item[2] === "Supply Crate"){
-			img[8] = "images/last.jpg";
-			map[8] = "A New System";
-			backpack.splice(item);
-			item.splice("Supply Crate");
+				else{
+					gameMessage = "You can't use that here";
+				}
 		}
 	}
 
 
-	</script>
 
+	</script>
+		
 </body>
 </html>
