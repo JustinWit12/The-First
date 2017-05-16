@@ -48,6 +48,14 @@
 			font-size: 50px;
 		}
 
+		#rules{
+			float: right;
+			color: white;
+			font-size: 32px;
+			margin-left: 800px;
+			background-color: black;
+		}
+
 	</style>
 </head>
 
@@ -58,6 +66,7 @@
 	<p id= "output"> </p>
 	<input id = "input" type ="text" placeholder ="Which Way Captain?">
 	<button id ="key"> Enter</button>
+	<div id = "rules">Use the arrow keys to move or type: north, east, south, or west in the text box. Use z to take, x to drop, or c to use items, you can also type "take", "drop", or "use" in the text box. </div>
 	
 
 
@@ -108,8 +117,6 @@
 		var supplyLocation = [];
 		supplyLocation = 3;
 
-
-
 		var backpack = [];
 
 		var itemsIknow = ["Key", "Torpedo", "Supply Crate"];
@@ -119,9 +126,6 @@
 		var playerInput = "";
 		var gameMessage = "";
 		var action = "";
-
-
-
 
 		var output= document.querySelector("#output");
 			output.innerHTML = map[mapLocation];
@@ -144,20 +148,43 @@
 
 		function keyUpHandler(e){
 			if(e.keyCode == 40){
-				event.preventDefault();
-				playerInput = "south";
-				action = "south";
+				input.value = "south";
 				document.getElementById("key").click();
-				console.log("input: " + playerInput);
 			}
+
 			if(e.keyCode == 39){
-				rightPressed = false;
+				input.value = "east";
+				document.getElementById("key").click();		
 			}
+
 			if(e.keyCode == 38){
-				console.log("up")
+				input.value = "north";
+				document.getElementById("key").click();
 			}
+
 			if(e.keyCode == 37){
-				leftPressed = false;
+				input.value = "west";
+				document.getElementById("key").click();
+			}
+
+			if(e.keyCode == 37){
+				input.value = "west";
+				document.getElementById("key").click();
+			}
+
+			if(e.keyCode == 90){
+				input.value = "take";
+				document.getElementById("key").click();
+			}
+
+			if(e.keyCode == 88){
+				input.value = "drop";
+				document.getElementById("key").click();
+			}
+
+			if(e.keyCode == 67){
+				input.value = "use";
+				document.getElementById("key").click();
 			}
 		}
 
