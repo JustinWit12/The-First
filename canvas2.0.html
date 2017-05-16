@@ -71,55 +71,19 @@
 
 	var letter = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 	var rand = [];
+
+
+	function pickColor(){
 	rand[0] = Math.floor((Math.random() * 15) + 1);
 	rand[1] = Math.floor((Math.random() * 15) + 1);
 	rand[2] = Math.floor((Math.random() * 15) + 1);
 	rand[3] = Math.floor((Math.random() * 15) + 1);
 	rand[4] = Math.floor((Math.random() * 15) + 1);
 	rand[5] = Math.floor((Math.random() * 15) + 1);
+	rand[6] = ["#" + letter[rand[0]] + letter[rand[1]] + letter[rand[2]] + letter[rand[3]] + letter[rand[4]] + letter[rand[5]]];
+	}
 	
-	var color = ["#" + letter[rand[0]] + letter[rand[1]] + letter[rand[2]] + letter[rand[3]] + letter[rand[4]] + letter[rand[5]]];
-
-	var rand1 = [];
-	rand1[0] = Math.floor((Math.random() * 15) + 1);
-	rand1[1] = Math.floor((Math.random() * 15) + 1);
-	rand1[2] = Math.floor((Math.random() * 15) + 1);
-	rand1[3] = Math.floor((Math.random() * 15) + 1);
-	rand1[4] = Math.floor((Math.random() * 15) + 1);
-	rand1[5] = Math.floor((Math.random() * 15) + 1);
-	
-	var color1 = ["#" + letter[rand1[0]] + letter[rand1[1]] + letter[rand1[2]] + letter[rand1[3]] + letter[rand1[4]] + letter[rand1[5]]];
-
-	var rand2 = [];
-	rand2[0] = Math.floor((Math.random() * 15) + 1);
-	rand2[1] = Math.floor((Math.random() * 15) + 1);
-	rand2[2] = Math.floor((Math.random() * 15) + 1);
-	rand2[3] = Math.floor((Math.random() * 15) + 1);
-	rand2[4] = Math.floor((Math.random() * 15) + 1);
-	rand2[5] = Math.floor((Math.random() * 15) + 1);
-	
-	var color2 = ["#" + letter[rand2[0]] + letter[rand2[1]] + letter[rand2[2]] + letter[rand2[3]] + letter[rand2[4]] + letter[rand2[5]]];
-
-	var rand3 = [];
-	rand3[0] = Math.floor((Math.random() * 15) + 1);
-	rand3[1] = Math.floor((Math.random() * 15) + 1);
-	rand3[2] = Math.floor((Math.random() * 15) + 1);
-	rand3[3] = Math.floor((Math.random() * 15) + 1);
-	rand3[4] = Math.floor((Math.random() * 15) + 1);
-	rand3[5] = Math.floor((Math.random() * 15) + 1);
-
-	var color3 = ["#" + letter[rand3[0]] + letter[rand3[1]] + letter[rand3[2]] + letter[rand3[3]] + letter[rand3[4]] + letter[rand3[5]]];
-
-	var rand4 = [];
-	rand4[0] = Math.floor((Math.random() * 15) + 1);
-	rand4[1] = Math.floor((Math.random() * 15) + 1);
-	rand4[2] = Math.floor((Math.random() * 15) + 1);
-	rand4[3] = Math.floor((Math.random() * 15) + 1);
-	rand4[4] = Math.floor((Math.random() * 15) + 1);
-	rand4[5] = Math.floor((Math.random() * 15) + 1);
-
-	var color4 = ["#" + letter[rand4[0]] + letter[rand4[1]] + letter[rand4[2]] + letter[rand4[3]] + letter[rand4[4]] + letter[rand4[5]]];
-
+	console.log(rand[6]);
 
 
 	var bricks = [];
@@ -172,7 +136,7 @@
 	function drawBall(){
 		ctx.beginPath();
 		ctx.arc(x, y, ballRadius, 0, 3.14*2);
-		ctx.fillStyle = color;
+		ctx.fillStyle = rand[6];
 		ctx.fill();
 		ctx.closePath();
 	}
@@ -180,7 +144,7 @@
 	function drawPaddle(){
 		ctx.beginPath();
 		ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-		ctx.fillStyle = color1;
+		ctx.fillStyle = pickColor;
 		ctx.fill();
 		ctx.closePath();
 	}
@@ -196,13 +160,13 @@
 	                ctx.beginPath();
 	                ctx.rect(brickX, brickY, brickWidth, brickHeight);
 	                if(r === 0){
-	                	ctx.fillStyle = color2
+	                	ctx.fillStyle = pickColor
 	                }
 	                else if(r === 1){
-	                	ctx.fillStyle = color3
+	                	ctx.fillStyle = pickColor
 	                }
 	                else{
-	                	ctx.fillStyle = color4
+	                	ctx.fillStyle = pickColor
 	                }
 	                ctx.fill();
 	                ctx.closePath();
